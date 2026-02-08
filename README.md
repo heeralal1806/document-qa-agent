@@ -33,7 +33,7 @@ cd document-qa-agent
 
 2. Create virtual environment:
 ```bash
-python -m venv venv
+python3 -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 ```
 
@@ -50,7 +50,7 @@ cp .env.example .env
 
 5. Run the application:
 ```bash
-python main.py
+python3 main.py
 ```
 
 6. Open browser and navigate to: `http://localhost:8000`
