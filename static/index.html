@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Q&A AI Agent</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>📄 Document Q&A AI Agent</h1>
+            <p class="subtitle">Intelligent document question-answering powered by LLMs</p>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <nav class="tabs">
+            <button class="tab active" data-tab="upload">📤 Upload</button>
+            <button class="tab" data-tab="documents">📚 Documents</button>
+            <button class="tab" data-tab="qa">❓ Q&A</button>
+            <button class="tab" data-tab="arxiv">📚 ArXiv</button>
+        </nav>
+
+        <!-- Upload Tab -->
+        <section id="upload-tab" class="tab-content active">
+            <div class="upload-area" id="upload-area">
+                <div class="upload-icon">📄</div>
+                <h3>Drop PDF files here</h3>
+                <p>or click to browse</p>
+                <input type="file" id="file-input" accept=".pdf" multiple hidden>
+            </div>
+            <div id="upload-progress" class="hidden">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                <p id="upload-status">Uploading...</p>
+            </div>
+            <div id="upload-result" class="hidden"></div>
+        </section>
+
+        <!-- Documents Tab -->
+        <section id="documents-tab" class="tab-content">
+            <h2>📚 Uploaded Documents</h2>
+            <button id="refresh-docs" class="btn btn-secondary">🔄 Refresh</button>
+            <div id="documents-list" class="documents-grid"></div>
+            <div id="no-docs" class="empty-state">
+                <p>No documents uploaded yet.</p>
+                <p>Go to the Upload tab to add documents.</p>
+            </div>
+        </section>
+
+        <!-- Q&A Tab -->
+        <section id="qa-tab" class="tab-content">
+            <h2>❓ Ask Questions</h2>
+            
+            <div class="query-options">
+                <label>
+                    <input type="checkbox" id="select-all-docs"> Select All Documents
+                </label>
+            </div>
+            
+            <div id="doc-selector" class="doc-selector"></div>
+            
+            <div class="query-box">
+                <textarea id="question-input" placeholder="Ask a question about your documents..."></textarea>
+                <div class="query-actions">
+                    <select id="query-type">
+                        <option value="general">General Question</option>
+                        <option value="summarize">Summarize</option>
+                        <option value="extract">Extract Data</option>
+                        <option value="compare">Compare</option>
+                        <option value="explain">Explain</option>
+                    </select>
+                    <button id="ask-btn" class="btn btn-primary">Ask Question</button>
+                </div>
+            </div>
+
+            <div id="answer-section" class="hidden">
+                <div class="answer-header">
+                    <h3>Answer</h3>
+                    <span id="answer-meta" class="meta"></span>
+                </div>
+                <div id="answer-content" class="answer-content"></div>
+            </div>
+
+            <div id="loading" class="loading hidden">
+                <div class="spinner"></div>
+                <p>Processing your question...</p>
+            </div>
+        </section>
+
+        <!-- ArXiv Tab -->
+        <section id="arxiv-tab" class="tab-content">
+            <h2>📚 ArXiv Integration</h2>
+            
+            <div class="arxiv-search">
+                <input type="text" id="arxiv-query" placeholder="Search ArXiv papers...">
+                <input type="number" id="arxiv-max" value="5" min="1" max="20" class="small-input">
+                <button id="arxiv-search-btn" class="btn btn-primary">Search</button>
+            </div>
+
+            <div class="arxiv-search">
+                <input type="text" id="arxiv-desc" placeholder="Describe what you're looking for...">
+                <button id="arxiv-desc-btn" class="btn btn-secondary">Search by Description</button>
+            </div>
+
+            <div id="arxiv-results" class="arxiv-grid"></div>
+        </section>
+
+        <!-- Toast Notifications -->
+        <div id="toast" class="toast hidden"></div>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
+
